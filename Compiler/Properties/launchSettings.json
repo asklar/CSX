@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "csxc2": {
+      "commandName": "Project",
+      "commandLineArgs": "F:\\uip\\csxc2\\2.csx"
+    }
+  }
+}

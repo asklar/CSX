@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="PreprocessCSX" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <CSXCompiler>$(MSBuildThisFileDirectory)\..\Compiler\bin\$(Configuration)\$(TargetFramework)\CSXC2.exe</CSXCompiler>
+    </PropertyGroup>
+    <Target Name="PreprocessCSX_Filter">
+        <ItemGroup>
+            <CsxCompile Include="*.csx"/>
+            <Compile Include="@(CsxCompile->'.csx','.cs')"/>
+        </ItemGroup>
+        <Message Text="CsxCompile count = @(CsxCompile->Count())"/>
+    </Target>
+    <Target Name="PreprocessCSX" BeforeTargets="Build" DependsOnTargets="PreprocessCSX_Filter">
+        <Exec Command="$(CSXCompiler) @(CsxCompile->'%(Identity)', ' ') " />
+    </Target>
+</Project>
